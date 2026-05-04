@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Difference Calculator — Find the Age Gap Between Two People</title>
+<meta name="description" content="Free age difference calculator. Find the exact age gap between two people in years, months and days. Perfect for couples, siblings, friends and classmates.">
+<meta property="og:title" content="Age Difference Calculator — Find the Age Gap Between Two People">
+<meta property="og:description" content="Find the exact age gap between two people in years, months and days.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://howoldiam.netlify.app/age-difference-calculator.html">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://howoldiam.netlify.app/age-difference-calculator.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Age Difference Calculator",
+      "url": "https://howoldiam.netlify.app/age-difference-calculator.html",
+      "description": "Find the exact age gap between two people in years, months and days.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate the age difference between two people?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Enter the date of birth of both people and click Calculate. The tool instantly shows the exact age gap in years, months, and days." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a healthy age gap in a relationship?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no universal rule. Research suggests relationships with a smaller age gap tend to report higher satisfaction, but compatibility depends on many factors beyond age." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this to find the age difference between siblings?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter each sibling's date of birth and the calculator shows the exact age gap between them in years, months, and days." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is older — does the calculator tell me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The result clearly states which person is older and by exactly how much." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F2ED; --surface: #FFFFFF; --ink: #1A1814; --ink2: #5C5850;
+    --ink3: #9A9590; --accent: #C9440F; --accent-light: #FDF0EB;
+    --border: rgba(26,24,20,0.10); --radius: 16px;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; }
+  header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; max-width: 860px; margin: 0 auto; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--ink); text-decoration: none; }
+  .logo span { color: var(--accent); }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  nav a { font-size: 13px; color: var(--ink2); text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: background .15s; }
+  nav a:hover, nav a.active { background: var(--surface); color: var(--ink); }
+  main { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  .hero { text-align: center; padding: 48px 0 40px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p { font-size: 16px; color: var(--ink2); max-width: 480px; margin: 0 auto; }
+  .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 36px 40px; margin-bottom: 24px; }
+  @media (max-width: 560px) { .card { padding: 24px 20px; } nav a { font-size: 12px; padding: 5px 8px; } }
+  .persons-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+  @media (max-width: 560px) { .persons-row { grid-template-columns: 1fr; } }
+  .person-block { background: var(--bg); border-radius: 12px; padding: 20px; }
+  .person-block h3 { font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3); margin-bottom: 14px; }
+  .field label { display: block; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3); margin-bottom: 8px; }
+  .field input[type="text"] { width: 100%; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; outline: none; transition: border-color .2s; margin-bottom: 12px; }
+  .field input[type="date"] { width: 100%; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; outline: none; transition: border-color .2s; cursor: pointer; }
+  .field input:focus { border-color: var(--accent); }
+  .vs-divider { display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink3); padding-top: 36px; }
+  .calc-btn { width: 100%; padding: 15px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: #fff; background: var(--accent); border: none; border-radius: 10px; cursor: pointer; transition: opacity .2s; }
+  .calc-btn:hover { opacity: .88; }
+  .results { display: none; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .results.show { display: block; }
+  .result-headline { font-family: 'DM Serif Display', serif; font-size: 36px; letter-spacing: -.5px; color: var(--ink); margin-bottom: 8px; line-height: 1.2; }
+  .result-sub { font-size: 14px; color: var(--ink3); margin-bottom: 24px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat { background: var(--bg); border-radius: 12px; padding: 16px; text-align: center; }
+  .stat-value { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--ink3); }
+  .older-banner { background: var(--accent-light); border: 1px solid rgba(201,68,15,.15); border-radius: 12px; padding: 14px 18px; font-size: 14px; color: var(--accent); font-weight: 500; }
+  .other-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+  @media(max-width:540px) { .other-tools { grid-template-columns: 1fr; } }
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: border-color .2s; display: block; }
+  .tool-card:hover { border-color: var(--accent); }
+  .tool-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .tool-card p { font-size: 13px; color: var(--ink3); }
+  .about { margin-top: 16px; }
+  .about h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -.4px; margin-bottom: 12px; }
+  .about p { font-size: 15px; color: var(--ink2); margin-bottom: 14px; line-height: 1.75; }
+  .faq { margin-top: 48px; }
+  .faq h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -.4px; margin-bottom: 20px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-q:hover { color: var(--accent); }
+  .faq-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--ink2); transition: transform .2s, background .2s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent-light); color: var(--accent); }
+  .faq-a { display: none; padding: 0 0 18px; font-size: 14px; color: var(--ink2); line-height: 1.75; max-width: 640px; }
+  .faq-item.open .faq-a { display: block; }
+  footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--ink3); border-top: 1px solid var(--border); max-width: 860px; margin: 0 auto; }
+  footer a { color: var(--ink3); text-decoration: underline; margin: 0 8px; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">HowOld<span>Iam</span></a>
+  <nav>
+    <a href="/">Age Calculator</a>
+    <a href="/how-old-was-i.html">How Old Was I?</a>
+    <a href="/age-difference-calculator.html" class="active">Age Difference</a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <h1>Age <em>difference</em> calculator</h1>
+    <p>Find the exact age gap between two people — couples, siblings, friends, parents, or classmates.</p>
+  </section>
+
+  <div class="card">
+    <div class="persons-row">
+      <div class="person-block">
+        <h3>Person A</h3>
+        <div class="field">
+          <label for="name-a">Name (optional)</label>
+          <input type="text" id="name-a" placeholder="e.g. Ahmed">
+          <label for="dob-a">Date of birth</label>
+          <input type="date" id="dob-a" max="">
+        </div>
+      </div>
+      <div class="person-block">
+        <h3>Person B</h3>
+        <div class="field">
+          <label for="name-b">Name (optional)</label>
+          <input type="text" id="name-b" placeholder="e.g. Sara">
+          <label for="dob-b">Date of birth</label>
+          <input type="date" id="dob-b" max="">
+        </div>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate age difference</button>
+
+    <div class="results" id="results">
+      <div class="result-headline" id="main-result"></div>
+      <div class="result-sub" id="sub-result"></div>
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="older-banner" id="older-banner"></div>
+    </div>
+  </div>
+
+  <div class="other-tools">
+    <a href="/" class="tool-card">
+      <h3>Age calculator</h3>
+      <p>Find your exact age in years, months, days, hours, and minutes right now.</p>
+    </a>
+    <a href="/how-old-was-i.html" class="tool-card">
+      <h3>How old was I?</h3>
+      <p>Find out how old you were in any specific year — great for nostalgic moments.</p>
+    </a>
+  </div>
+
+  <section class="about">
+    <h2>How to use the age difference calculator</h2>
+    <p>Enter the dates of birth for both people. You can optionally add names to make the result more personal. Click <strong>Calculate age difference</strong> and the tool instantly shows the exact age gap in years, months, and days, along with which person is older.</p>
+    <p>This tool is commonly used by couples wanting to know their age gap, siblings comparing birth years, friends settling a debate about who is older, or anyone curious about the age difference between two people in history or popular culture.</p>
+    <p>All calculations run in your browser. No personal data is collected or stored.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I calculate the age difference between two people?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Enter the date of birth for both people above and click Calculate. The tool shows the exact age gap in years, months, and days and tells you who is older.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What is a healthy age gap in a relationship?<span class="faq-icon">+</span></button>
+      <div class="faq-a">There is no universal answer. Research suggests couples with smaller age gaps report higher relationship satisfaction on average, but compatibility depends on values, communication, and life goals — not age alone.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can I use this to find the age difference between siblings?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Yes. Enter each sibling's date of birth and the calculator shows the exact gap between them in years, months, and days.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Who is older — does the calculator tell me?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Yes. The result clearly states which person is older and by exactly how much, down to the day.</div>
+    </div>
+  </section>
+</main>
+<footer>
+  <a href="/">Age Calculator</a><a href="/how-old-was-i.html">How Old Was I?</a><a href="/age-difference-calculator.html">Age Difference</a><a href="/privacy.html">Privacy</a>
+</footer>
+<script>
+  const maxDate = new Date().toISOString().split('T')[0];
+  document.getElementById('dob-a').max = maxDate;
+  document.getElementById('dob-b').max = maxDate;
+
+  function calculate() {
+    const dobAVal = document.getElementById('dob-a').value;
+    const dobBVal = document.getElementById('dob-b').value;
+    if (!dobAVal || !dobBVal) { alert('Please enter both dates of birth.'); return; }
+
+    const nameA = document.getElementById('name-a').value.trim() || 'Person A';
+    const nameB = document.getElementById('name-b').value.trim() || 'Person B';
+    const dobA = new Date(dobAVal);
+    const dobB = new Date(dobBVal);
+
+    const older = dobA < dobB ? { name: nameA, dob: dobA, other: nameB } : { name: nameB, dob: dobB, other: nameA };
+    const younger = dobA < dobB ? { name: nameB, dob: dobB } : { name: nameA, dob: dobA };
+
+    let years = younger.dob.getFullYear() - older.dob.getFullYear();
+    let months = younger.dob.getMonth() - older.dob.getMonth();
+    let days = younger.dob.getDate() - older.dob.getDate();
+    if (days < 0) { months--; days += new Date(younger.dob.getFullYear(), younger.dob.getMonth(), 0).getDate(); }
+    if (months < 0) { years--; months += 12; }
+    const totalDays = Math.abs(Math.floor((dobA - dobB) / 86400000));
+    const totalWeeks = Math.floor(totalDays / 7);
+    const totalMonths = years * 12 + months;
+
+    if (dobAVal === dobBVal) {
+      document.getElementById('main-result').textContent = 'Same birthday!';
+      document.getElementById('sub-result').textContent = `${nameA} and ${nameB} were born on the same date.`;
+      document.getElementById('stats-grid').innerHTML = '';
+      document.getElementById('older-banner').textContent = '🎂 They share the exact same birthday.';
+      document.getElementById('results').classList.add('show');
+      return;
+    }
+
+    document.getElementById('main-result').textContent =
+      `${years} year${years!==1?'s':''}, ${months} month${months!==1?'s':''}, ${days} day${days!==1?'s':''}`;
+    document.getElementById('sub-result').textContent =
+      `${older.name}: ${older.dob.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}  ·  ${younger.name}: ${younger.dob.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}`;
+
+    const stats = [
+      { value: years, label: 'Years' },
+      { value: months, label: 'Months (rem.)' },
+      { value: days, label: 'Days (rem.)' },
+      { value: totalMonths.toLocaleString(), label: 'Total months' },
+      { value: totalWeeks.toLocaleString(), label: 'Total weeks' },
+      { value: totalDays.toLocaleString(), label: 'Total days' },
+    ];
+    document.getElementById('stats-grid').innerHTML = stats.map(s =>
+      `<div class="stat"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`
+    ).join('');
+
+    document.getElementById('older-banner').textContent =
+      `👴 ${older.name} is older by ${years} year${years!==1?'s':''}, ${months} month${months!==1?'s':''} and ${days} day${days!==1?'s':''}.`;
+
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+</script>
+</body>
+</html>
